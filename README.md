@@ -12,7 +12,9 @@ TBD
 
 ### Example 1 (preliminary): Convection
 
-https://github.com/mpenwarden/dtPINN/tree/main/figures/convection_test_1.mp4
+https://user-images.githubusercontent.com/74904442/202097110-31b74d6b-888f-4b32-ada7-9f13b145e53b.mp4
+
+https://user-images.githubusercontent.com/74904442/202097173-3bb20175-1862-4e39-967e-4a9759720d06.mp4
 
 ## License
 
