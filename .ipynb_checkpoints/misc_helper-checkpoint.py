@@ -51,8 +51,8 @@ def make_gif(model_name):
         images1.append(imageio.imread(filename))
     for filename in impath2:
         images2.append(imageio.imread(filename))
-    imageio.mimsave(str(Path.cwd()) + '\\figures\\' + model_name + '.mp4', images1, macro_block_size = 1)
-    imageio.mimsave(str(Path.cwd()) + '\\figures\\' + model_name + '.mp4', images2, macro_block_size = 1)
+    imageio.mimsave(str(Path.cwd()) + '\\figures\\' + model_name + '_1.mp4', images1, macro_block_size = 1)
+    imageio.mimsave(str(Path.cwd()) + '\\figures\\' + model_name + '_2.mp4', images2, macro_block_size = 1)
     
 def training_loop(userPar, dataPar, model, adam_loops, lbfgs_loops):
     
