@@ -25,9 +25,9 @@ https://doi.org/10.1016/j.jcp.2023.112464
 
 ### Example: Convection
 
-![](https://github.com/mpenwarden/dtPINN/blob/main/example/figures/convection_example_1)
+![](https://github.com/mpenwarden/dtPINN/tree/main/example/figures/convection_example_1)
 
-![](https://github.com/mpenwarden/dtPINN/blob/main/example/figures/convection_example_2)
+![](https://github.com/mpenwarden/dtPINN/tree/main/example/figures/convection_example_2)
 
 ## License
 
