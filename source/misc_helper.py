@@ -36,6 +36,12 @@ def combine_layers(input_encoding, M, hidden_layers):
 def get_dt(tmin, tmax, num_partitions):
     return (abs(tmin-tmax))/num_partitions
 
+# If you saved a log, you can load it afterward to recover data
+def load_log(userPar):
+    with open(userPar['path'] + '\\log\\' + userPar['model_name'] + '_log.pickle', 'rb') as f:
+        log = pickle.load(f)
+    return log
+
 # Add user set parameters to a dictionary for ease of access and readability
 def get_userPar(path, pde_type, input_encoding, M, L, layers, adam_params, lbfgs_params, adaptive_activation, learned_weights, N_x, N_t, N_f, N_0, N_b, N_i, collocation_sampling,\
                      num_partitions, dt, dS, causal_dS, interface_condition, layer_transfer, layer_trainability, window_scheme, scheme_parameters, PDE, stacked_tol, lambda_w, dirichlet_bc):
@@ -50,16 +56,16 @@ def get_userPar(path, pde_type, input_encoding, M, L, layers, adam_params, lbfgs
     return userPar
 
 # Make a video file from saved figures during training
-def make_gif(model_name):
-    impath1 = glob.glob(str(Path.cwd()) + '\\figures\\' + model_name + '_fig1_*.png')
-    impath2 = glob.glob(str(Path.cwd()) + '\\figures\\' + model_name + '_fig2_*.png')
+def make_gif(userPar):
+    impath1 = glob.glob(userPar['path'] + '\\figures\\' + userPar['model_name'] + '_fig1_*.png')
+    impath2 = glob.glob(userPar['path'] + '\\figures\\' + userPar['model_name'] + '_fig2_*.png')
     images1 = []; images2 = []
     for filename in impath1:
         images1.append(imageio.imread(filename))
     for filename in impath2:
         images2.append(imageio.imread(filename))
-    imageio.mimsave(str(Path.cwd()) + '\\figures\\' + model_name + '_1.mp4', images1, macro_block_size = 1)
-    imageio.mimsave(str(Path.cwd()) + '\\figures\\' + model_name + '_2.mp4', images2, macro_block_size = 1)
+    imageio.mimsave(userPar['path'] + '\\figures\\' + userPar['model_name'] + '_1.mp4', images1, macro_block_size = 1)
+    imageio.mimsave(userPar['path'] + '\\figures\\' + userPar['model_name'] + '_2.mp4', images2, macro_block_size = 1)
     
 def update_iteration_lists(iterations, epoch_list, epoch_record_list):
     epoch_list.append(epoch_list[-1]+iterations)

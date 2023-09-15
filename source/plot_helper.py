@@ -68,7 +68,7 @@ def sample_plot(dataPar, userPar):
         plt.yticks(fontsize = 20); plt.xticks(fontsize = 20)
         plt.savefig(userPar['path'] + '\\log\\'+'point_set_plot', dpi = 300, bbox_inches='tight')
         
-# Plot animcation snapshots
+# Plot animation snapshots
 def animation_plot(userPar, dataPar, model, l2_error_list, epoch_list, epoch_record_list, fig_num):
     plt.rcParams['text.usetex'] = True
     
@@ -186,7 +186,7 @@ def animation_plot(userPar, dataPar, model, l2_error_list, epoch_list, epoch_rec
         t.set_fontsize(fontsize_cbar)
     
     if userPar['save_fig'] == 1:
-        plt.savefig(userPar['path'] + '\\figures\\' + userPar['model_name'] + '_fig1_' + str(fig_num), dpi = 300, bbox_inches='tight')
+        plt.savefig(userPar['path'] + '\\figures\\' + userPar['model_name'] + '_fig1_' + str(fig_num), dpi = 300)
     if userPar['show_fig'] == 1:
         plt.show()
     plt.close()
@@ -256,7 +256,7 @@ def animation_plot(userPar, dataPar, model, l2_error_list, epoch_list, epoch_rec
     plt.xlabel('x', fontsize = fontsize); plt.yticks(fontsize = fontsize); plt.xticks(fontsize = fontsize)
     
     if userPar['save_fig'] == 1:
-        plt.savefig(userPar['path'] + '\\figures\\' + userPar['model_name'] + '_fig2_' + str(fig_num), dpi = 300, bbox_inches='tight')
+        plt.savefig(userPar['path'] + '\\figures\\' + userPar['model_name'] + '_fig2_' + str(fig_num), dpi = 300)
     if userPar['show_fig'] == 1:
         plt.show()
     plt.close()
