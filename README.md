@@ -9,11 +9,11 @@ This repository is split into four main parts: data, results, source, and exampl
 
 Data - The data folder contains the reference PDE solutions to the problems solved in the manuscript and the MATLAB code used to generate the solution data from the Chebfun toolbox (https://www.chebfun.org/).
 
-Results - The results folder contains PINN model runs that directly contributed to the results reported in the manuscript and runs that did not make it into the manuscript. Models run in this folder may be deprecated and won't run without modification since the codebase (source files) was updated throughout the project to add more functionality.  
+Results - The results folder contains PINN model runs that directly contributed to the results reported in the manuscript and runs that did not make it into the manuscript. Models run in this folder (Convection & Allen-Cahn) may be deprecated and won't run without modification since the codebase (source files) was updated throughout the project to add more functionality.  
 
 Source - The source folder contains the final version of the unified framework for PINNs and their temporal decompositions. These foundational classes and helper functions are called in the Jupyter Notebook files to run differently configured models on various problems under various conditions. 
 
-Example - The example folder contains an up-to-date Jupyter Notebook that should run without modification and calls the source files to define and run models per the proposed manuscript framework. If you want to solve new problems with this code, modify the settings in this example.
+Example - The example folder contains an up-to-date Jupyter Notebook that should run without modification and calls the source files to define and run models per the proposed manuscript framework. If you want to solve new problems with this code, modify the settings in this example. *Note: Animation setting not currently working with window-sweeping on. 
 
 ## Citation
 
@@ -25,9 +25,9 @@ https://doi.org/10.1016/j.jcp.2023.112464
 
 ### Example: Convection
 
-![](https://github.com/mpenwarden/dtPINN/assets/74904442/16b3223a-1210-4733-8dda-45ab3e9fd788)
+https://github.com/mpenwarden/dtPINN/assets/74904442/16b3223a-1210-4733-8dda-45ab3e9fd788
 
-![](https://github.com/mpenwarden/dtPINN/assets/74904442/6b5bf089-b9fa-4952-9997-3780d3e9734a)
+https://github.com/mpenwarden/dtPINN/assets/74904442/6b5bf089-b9fa-4952-9997-3780d3e9734a
 
 ## License
 
