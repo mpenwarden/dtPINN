@@ -248,12 +248,7 @@ class dtPINN:
                         if self.window_scheme == 'causal':
                             self.u_bc = u_bc_causal
                             fu_t = torch.unsqueeze(torch.mean(torch.reshape(fu,(int(len(fu)/100),100)).square(),1),-1)
-                            #print(fu_t.shape)
-                            #print(f_weights.shape)
-                            #print(torch.min(f_weights))
                             mse_f += (fu_t*f_weights).mean()
-                            #print('Mean', torch.mean(f_weights))
-                            #print('Min', torch.min(f_weights))
                             if torch.min(f_weights) > 0.95 and int(len(fu)/100) == 100:
                                 print('')
                                 print('End Condition')
@@ -270,7 +265,6 @@ class dtPINN:
                     tf_bc, xf_bc = self.window_sweep.apply_cutoffs_bcPts(self.tf_decomp[i], self.xf_decomp[i])
                     if len(tf_bc) != 0:
                         u_bc = self.forward(dnet, tf_bc, xf_bc, a())
-                        #print(u_bc.shape)
                         mse_bc += (self.u_bc - u_bc).square().mean()
                         
                 ### Interface condtion loss    
@@ -363,7 +357,6 @@ class dtPINN:
                 self.end_propogate, self.do_adam_iters = self.window_sweep.propogate(self.propogate_dt)
                 t, u = self.window_sweep.apply_cutoffs_bcPts(t, u)
 
-                #print('length u ', u.detach().shape)
                 if self.first_prop == 1:
                     self.u_bc = u.detach()
                     self.first_prop = 0
@@ -371,7 +364,6 @@ class dtPINN:
                     self.u_bc = torch.cat((self.u_bc, u.detach())) # Update points saved for backward-compadability
 
             self.mse_f_prev = mse_f
-            #print('length u_bc', self.u_bc.shape)
 
             ### Old code to move based on point-wise residuals
             #mask = fu.square() < torch.tensor(self.propogate_loss_tol)
@@ -410,7 +402,6 @@ class dtPINN:
             optimizer.zero_grad()
             loss.backward()
             optimizer.step() 
-            #print(time.time() - start_time)
             
             if self.window_scheme != 'none':
                 self.check_window_sweep(window_vars)

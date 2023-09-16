@@ -27,7 +27,7 @@ class window_sweep_class():
             test_erf = (-abs(erf(self.sharpness*test))+1)/2
             mask = np.argwhere(np.array(test_erf) > self.tolerance).flatten()
             test = np.array(test)[mask.tolist()]
-            self.method_offset = max(test) # Offset to weight scheme such that the starting t = 1
+            self.method_offset = max(test) # Offset to weight scheme such that the starting w = 1 at t = 0
         
             self.bc_end = self.evolve_offset
             self.null_start = self.method_offset*2 + self.evolve_offset
@@ -41,7 +41,7 @@ class window_sweep_class():
             self.use_null = self.scheme_parameters[5]
             self.propogate_adam_iters = self.scheme_parameters[6]
             
-            self.method_offset = self.width # Offset to weight scheme such that the starting t = 1
+            self.method_offset = self.width # Offset to weight scheme such that the starting w = 1 at t = 0
         
             self.bc_end = self.evolve_offset
             self.null_start = self.method_offset + self.evolve_offset
@@ -179,11 +179,8 @@ class window_sweep_class():
             if self.use_bc == 0:
                 self.res_sum_init = 0
                 
-            #print(t.shape)
-            #print(res.shape)
             ### For 100x100 grid sample only 
             resisual_mags = res.clone().detach()
-            #print(int(len(resisual_mags)/100))
             res_t = torch.mean(torch.reshape(resisual_mags,(int(len(resisual_mags)/100),100)).square(), 1)
             res_sum = self.res_sum_init
             for i in range(int(len(resisual_mags)/100)-1):
@@ -191,7 +188,6 @@ class window_sweep_class():
                 t_weight.append(np.exp(-self.epsilon*res_sum))
             
             if len(t_weight) > 1:
-                #print(t_weight[1])
                 if self.use_bc == 1 and t_weight[1] > 0.9:# If the real step set after the first (since it always has to be 1) is above the cutoff, put the points in the BC set
                     self.bc_end = self.bc_end + 0.01
                     self.res_sum_init += res_t[1]

@@ -179,11 +179,8 @@ class window_sweep_class():
             if self.use_bc == 0:
                 self.res_sum_init = 0
                 
-            #print(t.shape)
-            #print(res.shape)
             ### For 100x100 grid sample only 
             resisual_mags = res.clone().detach()
-            #print(int(len(resisual_mags)/100))
             res_t = torch.mean(torch.reshape(resisual_mags,(int(len(resisual_mags)/100),100)).square(), 1)
             res_sum = self.res_sum_init
             for i in range(int(len(resisual_mags)/100)-1):
@@ -191,7 +188,6 @@ class window_sweep_class():
                 t_weight.append(np.exp(-self.epsilon*res_sum))
             
             if len(t_weight) > 1:
-                #print(t_weight[1])
                 if self.use_bc == 1 and t_weight[1] > 0.9:# If the real step set after the first (since it always has to be 1) is above the cutoff, put the points in the BC set
                     self.bc_end = self.bc_end + 0.01
                     self.res_sum_init += res_t[1]

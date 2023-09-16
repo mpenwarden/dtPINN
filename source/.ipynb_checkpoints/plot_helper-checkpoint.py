@@ -92,7 +92,6 @@ def animation_plot(userPar, dataPar, model, l2_error_list, epoch_list, epoch_rec
         x_decomp_test.append(x_temp)
         x_plot_decomp_test.append(decomp_tuple[:,1])
         u_decomp_test.append(decomp_tuple[:,2])
-        #decomp_num_prev = decomp_num_prev + dataPar['decomp_num']
 
     ### dtPINN PREDICTION
     if userPar['window_scheme'] != 'none':
@@ -136,8 +135,6 @@ def animation_plot(userPar, dataPar, model, l2_error_list, epoch_list, epoch_rec
     plt.subplot(2,2,1)
     plt.title('Exact Solution', fontsize = fontsize)
     plt.tricontourf(triang_decomp, u_test_decomp, 100 ,cmap='jet', zorder = -1)
-    #print('cutoff bc ', cutoff_list[0][-1])
-    #print('cutoff null', cutoff_list[1][-1])
     if userPar['window_scheme'] != 'none':
         plt.plot([cutoff_list[0][-1], cutoff_list[0][-1]], [dataPar['xmin'], dataPar['xmax']], 'k')
         plt.plot([cutoff_list[1][-1], cutoff_list[1][-1]], [dataPar['xmin'], dataPar['xmax']], 'w')
@@ -233,7 +230,6 @@ def animation_plot(userPar, dataPar, model, l2_error_list, epoch_list, epoch_rec
     plt.subplot(2,2,4)
     plt.title('Final layer outputs (at middle of current time-slab)', fontsize = fontsize)
     a = model.return_a()
-    #print('a:', a.detach().numpy()[0])
     pretrained_dict = model.u_dnet[current_num_partitions-1].state_dict()
     temp_net = Net(userPar['layers'][:-1], userPar['adaptive_activation'])
     model_dict = temp_net.state_dict()
@@ -279,7 +275,6 @@ def final_plot(userPar, dataPar, model, epoch_list, epoch_record_list, l2_error_
     #decomp_num_prev = 0
     
     for i in range(userPar['num_partitions']):    
-        #decomp_tuple = dataPar['sorted_decomp'][decomp_num_prev:decomp_num_prev + dataPar['decomp_num']]
         if i == 0:
             decomp_tuple = dataPar['sorted_decomp'][(dataPar['sorted_decomp'][:,0] >= dataPar['tinter'][i]) & (dataPar['sorted_decomp'][:,0] <= dataPar['tinter'][i+1])]
         else:
@@ -335,8 +330,6 @@ def final_plot(userPar, dataPar, model, epoch_list, epoch_record_list, l2_error_
     plt.figure(figsize=(10,5))
     plt.title('Exact Solution', fontsize = fontsize)
     plt.tricontourf(triang_decomp, u_test_decomp, 100 ,cmap='jet', zorder = -1)
-    #print('cutoff bc ', cutoff_list[0][-1])
-    #print('cutoff null', cutoff_list[1][-1])
     if userPar['window_scheme'] != 'none':
         plt.plot([cutoff_list[0][-1], cutoff_list[0][-1]], [dataPar['xmin'], dataPar['xmax']], 'k')
         plt.plot([cutoff_list[1][-1], cutoff_list[1][-1]], [dataPar['xmin'], dataPar['xmax']], 'w')
@@ -405,8 +398,6 @@ def final_plot(userPar, dataPar, model, epoch_list, epoch_record_list, l2_error_
         if userPar['window_scheme'] != 'none' and len(t_res) != 0:
             plt.tricontourf(triang_res, res_decomp.flatten(), 100 ,cmap='jet')
         else:
-            #print(len(res_decomp.flatten()))
-            #print(len(t_decomp.flatten()))
             plt.tricontourf(triang_decomp, res_decomp.flatten(), 100 ,cmap='jet')
     plt.xlim((dataPar['tmin'], dataPar['tmax']))
     plt.ylabel('x', fontsize = fontsize); plt.xlabel('t', fontsize = fontsize); plt.yticks(fontsize = fontsize); plt.xticks(fontsize = fontsize)
@@ -481,7 +472,6 @@ def final_plot(userPar, dataPar, model, epoch_list, epoch_record_list, l2_error_
     plt.figure(figsize=(10,5))
     plt.title('Final layer outputs (at middle of current time-slab)', fontsize = fontsize)
     a = model.return_a()
-    #print('a:', a.detach().numpy()[0])
     pretrained_dict = model.u_dnet[current_num_partitions-1].state_dict()
     temp_net = Net(userPar['layers'][:-1], userPar['adaptive_activation'])
     model_dict = temp_net.state_dict()
