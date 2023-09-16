@@ -25,9 +25,9 @@ Example - The example folder contains an up-to-date Jupyter Notebook that should
 
 ### Example: Convection
 
-https://github.com/mpenwarden/dtPINN/assets/74904442/16b3223a-1210-4733-8dda-45ab3e9fd788
+https://github.com/mpenwarden/dtPINN/assets/74904442/5a8a1430-f22e-4951-8306-7457afa81397
 
-https://github.com/mpenwarden/dtPINN/assets/74904442/6b5bf089-b9fa-4952-9997-3780d3e9734a
+https://github.com/mpenwarden/dtPINN/assets/74904442/b7d3faed-fc45-43aa-a845-2b9e0bbe6c4b
 
 ## License
 
